@@ -1,0 +1,1 @@
+No Content: https://www.dob5.com/d/file/games/color-shape/cordova_plugins.js

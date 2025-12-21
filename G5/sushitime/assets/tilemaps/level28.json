@@ -1,0 +1,54 @@
+{ "height":16,
+ "layers":[
+        {
+         "height":16,
+         "image":"InGameBorder.png",
+         "name":"Border",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "width":8,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 4, 0, 0, 3, 3, 0, 0, 4, 4, 0, 0, 3, 3, 0, 0, 4, 3, 0, 0, 2, 2, 0, 0, 3, 3, 0, 0, 3, 3, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 1, 2, 2, 1, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2],
+         "height":16,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":8,
+         "x":0,
+         "y":0
+        }],
+ "orientation":"orthogonal",
+ "properties":
+    {
+     "black":"12",
+     "blue":"8",
+     "green":"10",
+     "moves":"6",
+     "pink":"4"
+    },
+ "tileheight":64,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"tiles.png",
+         "imageheight":64,
+         "imagewidth":256,
+         "margin":0,
+         "name":"tiles",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":64,
+         "tilewidth":64
+        }],
+ "tilewidth":64,
+ "version":1,
+ "width":8
+}

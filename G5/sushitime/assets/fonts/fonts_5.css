@@ -1,0 +1,11 @@
+@font-face
+{
+    font-family: 'djb_hunky_chunkbold';
+    font-style: normal;
+    font-weight: normal;
+    src: url('djb_hunky_chunk-webfont.eot');
+    src: url('djb_hunky_chunk-webfont.eot?#iefix') format('embedded-opentype'),
+            url('djb_hunky_chunk-webfont.woff') format('woff'),
+            url('djb_hunky_chunk-webfont.ttf') format('truetype'),
+            url('djb_hunky_chunk-webfont.svg#djb_hunky_chunkbold') format('svg');
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>Jewels Palace</title>
+<link rel="stylesheet" href="TemplateData/style.css"/>
+<script src="TemplateData/gamepush-unity.js"></script>
+
+<script>
+  var _unityAwaiter = {};
+    _unityAwaiter.ready = new Promise((resolve, reject) => {
+      _unityAwaiter.done = resolve;
+      _unityAwaiter.abort = reject;
+    });
+
+    var _gpAwaiter = {};
+    _gpAwaiter.ready = new Promise((resolve) => {
+      _gpAwaiter.done = resolve;
+    });
+
+    window.unityInstance = null;
+      _gpAwaiter.done();
+	</script>
+
+</head>
+<body class="dark">
+<div id="unity-container" class="unity-desktop">
+<canvas id="unity-canvas"></canvas>
+</div>
+<div id="loading-cover" style="display:none;">
+<div id="unity-loading-bar">
+<div id="unity-logo"><img src="logo.png"/></div>
+<div id="unity-progress-bar-empty" style="display: none;">
+<div id="unity-progress-bar-full"></div>
+</div>
+<div class="spinner"></div>
+</div>
+</div>
+<script>
+    const buildUrl = "Build";
+    const loaderUrl = buildUrl + "/Build.loader.js";
+    const config = {
+      dataUrl: buildUrl + "/133fb7ce1447970bab3764cbd50d8e9d.data.unityweb",
+      frameworkUrl: buildUrl + "/d8bd7103e31756e6e25fe9b0b40c4737.js",
+      codeUrl: buildUrl + "/b28599294beae2dd1150c79143ea42a0.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Game 2021",
+      productName: "Jewels Palace",
+      productVersion: "1.0.1",
+    };
+
+    const container = document.querySelector("#unity-container");
+    const canvas = document.querySelector("#unity-canvas");
+    const loadingCover = document.querySelector("#loading-cover");
+    const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+    const progressBarFull = document.querySelector("#unity-progress-bar-full");
+    const spinner = document.querySelector('.spinner');
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      container.className = "unity-mobile";
+    }
+
+    loadingCover.style.display = "";
+
+    const unityLoader = document.createElement("script");
+    unityLoader.src = loaderUrl;
+    unityLoader.onload = async () => {
+      await _gpAwaiter.ready;
+      createUnityInstance(canvas, config, (progress) => {
+        spinner.style.display = "none";
+        progressBarEmpty.style.display = "";
+        progressBarFull.style.width = `${100 * progress}%`;
+      }).then((unityInstance) => {
+        window.unityInstance = unityInstance;
+        _unityAwaiter.done(unityInstance);
+        loadingCover.style.display = "none";
+      }).catch((message) => {
+        _unityAwaiter.abort(message);
+        alert(message);
+      });
+    };
+    document.body.appendChild(unityLoader);
+
+    // Focus on pointer down.
+	canvas.addEventListener("touchstart", () => { window.focus() });
+	canvas.addEventListener("pointerdown", () => { window.focus() });
+
+    document.addEventListener("pointerdown", () => {
+      container.focus();
+      window.focus();
+      canvas.focus();
+    });
+
+	</script>
+</body>
+</html>

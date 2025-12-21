@@ -1,0 +1,100 @@
+{
+    "version": "0.0.1",
+    "appId": "wx92abbc562b921c26",
+    "subpackage": [
+        "3dres",
+        "sound"
+    ],
+    "configList": [
+        "config/leveldata.json"
+    ],
+    "fontList": [
+        "score"
+    ],
+    "baseResList": [
+        "man",
+        "woman",
+        "grid",
+        "wall",
+        "fixed_tarp_tarps",
+        "fixed_tarp_bomb",
+        "fixed_tarp_arrow",
+        "fixed_tarp_frame",
+        "move_tarp_blade",
+        "move_tarp_wall",
+        "dog",
+        "robber",
+        "door",
+        "keybaffle",
+        "keybaffle_u_h",
+        "keybaffle_u_v",
+        "keybaffle_h",
+        "keyboard",
+        "keydoor",
+        "keydoor_short",
+        "stage",
+        "arrow",
+        "ef_MG_pengzhuang",
+        "ef_MG_bomb"
+    ],
+    "bgm": "music/BGM.mp3",
+    "soundClick": "sound/buttonClick.wav",
+    "soundViewOpen": "sound/viewOpen.wav",
+    "default3DScene": "game-demo",
+    "viewMap": {
+        "loading": "view/comm/LoadingPage.scene",
+        "home": "view/comm/HomePage.scene",
+        "playing": "view/game/GamePage.scene",
+        "relive": "view/comm/RelivePage.scene",
+        "score": "view/comm/WinPage.scene",
+        "store": "view/game/StorePage.scene",
+        "sampleSack": "view/ad/SampleSackPage.scene",
+        "push": "view/ad/PushPage.scene",
+        "treasure": "view/ad/TreasurePage.scene"
+    },
+    "useWebApi": true,
+    "useWebAdApi": true,
+    "platformType": "wx",
+    "webApiSign": "tccl_api_secret",
+    "webApiMap": {
+        "login": "user/login",
+        "gameCfg": "Game/config",
+        "updateInfo": "User/update",
+        "logVideo": "Game/video",
+        "requestStoreCFG": "",
+        "requestEquipItem": "",
+        "unlockGoodsByGold": "",
+        "unlockGoodsByVideo": ""
+    },
+    "defaultCfg": {
+        "playerInfo": {
+            "user_id": "1",
+            "is_new": 1,
+            "level_id": 1,
+            "gold": 0,
+            "goods_id": [
+                0
+            ],
+            "goods_ids": [
+                [
+                    0
+                ],
+                [
+                    1
+                ]
+            ]
+        },
+        "gameSetting": {},
+        "levelData": {
+            "rewardGold": 10
+        }
+    },
+    "storeCfg": {
+        "typeMap": [
+            "icon/",
+            "icon/",
+            "icon/"
+        ],
+        "exchangeRate": 500
+    }
+}

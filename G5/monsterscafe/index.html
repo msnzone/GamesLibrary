@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Monsters Cafe</title>
+<script src="scripts.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+            function toggleDebugMenu()
+            {
+                var div = document.getElementById("debugContent");
+                
+                if(div.style.display == "")
+                {
+                    div.style.display = "none";
+                }
+                else
+                {
+                    div.style.display = "";
+                }
+            }
+            function goFullScreen()
+            {
+                Main.instance.engine.switchFullscreen();
+            }
+        </script>
+<style>
+            body, html{
+                margin:0;
+                padding:0;
+                width:100vw;
+                height:100vh;
+                background-color:black;
+                overflow: hidden;
+            }
+            .debug_div
+            {
+                background-color:black;
+                
+                position:absolute;
+                left: 0%;
+                top:0;
+                color:#00FF00;
+                border: 2px #00FF00 solid;
+                font-family: Courier New, Courier, monospace;
+                font-size: 10;
+                text-align: center;
+            }
+            .debug_div > :first-child:hover
+            {
+                cursor:pointer;
+                color:white;
+            }
+            .debug_div > div
+            {
+                margin-top:10px;
+            }
+            .debug_div > :nth-child(2) > table
+            {
+                width:100%;
+                color:#00FF00;
+            }
+            .debug_div > :nth-child(2) > table td
+            {
+                width:50%;
+                padding-top:5px;
+                font-size:20;
+            }
+            .debug_div button
+            {
+                background:#00FF00;
+                color:black;
+                border:#00FF00 solid 2px;
+                font-family: Courier New, Courier, monospace;
+                font-size:25px;
+                font-weight:bold;
+            }
+            .debug_div input:hover
+            {
+                color:white;
+                border-color:white;
+            }
+            .debug_div button:hover
+            {
+                border: 2px solid white;
+                background:white;
+            }
+            .debug_div button:hover:active
+            {
+                border:2px solid grey;
+                background:grey;
+            }
+            .debug_div input
+            {
+                width:200;
+                text-align:right;
+                color:#00FF00;
+                background-color:black;
+                border:#00FF00 2px solid;
+                font-family: Courier New, Courier, monospace;
+                height:40px;
+                font-size:35;
+            }
+        </style>
+</head>
+<body>
+<div id="content" style="margin:auto"></div>
+<div class="canvas_div">
+<canvas id="canvas" style="width:128.25vh;height:50%;touch-action:none" touch-action="none"></canvas>
+</div>
+
+</body>
+</html>

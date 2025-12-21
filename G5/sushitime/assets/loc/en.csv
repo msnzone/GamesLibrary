@@ -1,0 +1,18 @@
+key,value
+BUTTONS,BUTTONS
+1234567890,1234567890
+Moves:,Moves:
+Score:,Score:
+LEVEL {0},LEVEL {0}
+TRY AGAIN,TRY AGAIN
+INCOMPLETE,INCOMPLETE
+COMPLETE,COMPLETE
+WELL DONE,WELL DONE
+Tut1,Swipe 2 or more sushi to make a match
+Tut1_PC,Drag 2 or more sushi to make a match
+Tut2,Close a square of any size to clear all of that color
+Tut3,The numbers underneath represent the amount of each color that you need to clear
+TOTAL SCORE:,TOTAL SCORE:
+TARGETS, TARGETS,
+CONGRATULATIONS,WELL DONE,
+GAME COMPLETE,You finished all the levels in Sushi Time!

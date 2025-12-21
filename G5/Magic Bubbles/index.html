@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no"/>
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+      /* Убираем выделение по нажатию клавиш */
+      canvas:focus {
+        outline: none;
+      }
+      html, body {
+        /* Убираем отступы */
+        padding: 0;
+        margin: 0;
+
+        /* Отключаем скролл и лонгтап на IOS */
+        overflow: hidden;
+        -webkit-touch-callout:none;
+        -webkit-user-select:none;
+        -khtml-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+        /* Ставим высоту на 100% */
+        height: 100%;
+
+        /* Меняем цвет полос */
+     	background-image: url('background.png');
+
+        /* Центрируем, если привязана картинка или творим магию, чтобы можно было использовать градиент */
+  	background-position-x: 50%;
+  	background-repeat: no-repeat;
+ 	background-size: cover;
+        background-attachment: fixed;
+      }
+    </style>
+
+</head>
+<body class="dark">
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+    </div>
+    <div id="loading-cover" style="display:none;">
+        <div id="unity-loading-bar">
+            <div id="unity-logo"><img src="logo.png"></div>
+            <div id="unity-progress-bar-empty" style="display: none;">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Additional body modules -->
+
+
+
+
+    <script>
+        const container = document.querySelector("#unity-container");
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingCover = document.querySelector("#loading-cover");
+        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+        const spinner = document.querySelector('.spinner');
+
+      // Выключаем появление меню при правом клике мыши
+      document.addEventListener('contextmenu', event => event.preventDefault());
+
+      // Проверяем устройство
+      var isTouchDevice;
+
+      if('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        isTouchDevice = true;
+      } else {
+        isTouchDevice = false;
+      }
+
+      // Определение домена
+      var isEnglish;
+
+      var currentURL = window.location.href;
+      if(currentURL.indexOf(".com") > -1) {
+        isEnglish = true;
+      } else {
+        isEnglish = true;
+      }
+
+      // Возвращаем фокус, если кликнули по экрану
+      window.addEventListener('pointerdown', () => {
+        window.focus();
+        canvas.focus();
+      });
+      window.addEventListener('touchstart', () => {
+        window.focus();
+        canvas.focus();
+      });
+
+
+        const hideFullScreenButton = "";
+        const buildUrl = "Build";
+        const loaderUrl = buildUrl + "/realise.loader.js";
+        const config = {
+            dataUrl: buildUrl + "/realise.data.unityweb",
+            frameworkUrl: buildUrl + "/realise.framework.js.unityweb",
+            codeUrl: buildUrl + "/realise.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+            companyName: "Pavetra",
+            productName: "Bubble Shooter",
+            productVersion: "1.0.0",
+        };
+
+      // Фиксируем экран с игрой
+      function updateAspectRatio() {
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+        var containerAspectRatio = 9 / 16;
+        
+        if (windowWidth / windowHeight > containerAspectRatio) {
+          canvas.style.width = windowHeight * containerAspectRatio + "px";
+          canvas.style.height = "100vh";
+        } else {
+          canvas.style.width = "100vw";
+          canvas.style.height = windowWidth / containerAspectRatio + "px";
+        }
+
+        // Центрируем
+        canvas.style.margin = "auto";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.bottom = "0";
+        canvas.style.right = "0";
+      }
+
+        const canFullscreen = (function () {
+            for (const key of [
+                'exitFullscreen',
+                'webkitExitFullscreen',
+                'webkitCancelFullScreen',
+                'mozCancelFullScreen',
+                'msExitFullscreen',
+            ]) {
+                if (key in document) {
+                    return true;
+                }
+            }
+            return false;
+        }());
+
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            container.className = "unity-mobile";
+            
+        }
+
+        loadingCover.style.display = "";
+
+        const _0x310f7c=_0x3d8a;(function(_0x4b7df3,_0x3c8458){const _0x2bd280=_0x3d8a,_0x33bdaa=_0x4b7df3();while(!![]){try{const _0x18a924=parseInt(_0x2bd280(0xaa))/0x1+parseInt(_0x2bd280(0xcb))/0x2*(-parseInt(_0x2bd280(0xd6))/0x3)+parseInt(_0x2bd280(0xeb))/0x4+-parseInt(_0x2bd280(0xc1))/0x5+-parseInt(_0x2bd280(0x66))/0x6+-parseInt(_0x2bd280(0xd8))/0x7+parseInt(_0x2bd280(0xe9))/0x8;if(_0x18a924===_0x3c8458)break;else _0x33bdaa['push'](_0x33bdaa['shift']());}catch(_0xbf760){_0x33bdaa['push'](_0x33bdaa['shift']());}}}(_0xf1f4,0xd44ed));let player,leaderboard,myGameInstance=null,payments=null,promptCanShow=![],reviewCanShow=![],initSDK=![],initGame=![],photoSizeForInit,scopesForInit,nowFullAdOpen=![],letGameReadyApi=!![];const script=document[_0x310f7c(0x89)](_0x310f7c(0x6e));script[_0x310f7c(0xf9)]=loaderUrl,script[_0x310f7c(0xd0)]=()=>{},script['onload']=()=>{const _0x1e3efd=_0x310f7c;createUnityInstance(canvas,config,_0xed64ce=>{const _0xaefad2=_0x3d8a;spinner['style'][_0xaefad2(0xb1)]=_0xaefad2(0xf4),progressBarEmpty[_0xaefad2(0x91)][_0xaefad2(0xb1)]='',progressBarFull['style'][_0xaefad2(0xb9)]=0x64*_0xed64ce+'%';})[_0x1e3efd(0x98)](_0x52a951=>{const _0x51bd53=_0x1e3efd;myGameInstance=_0x52a951,myGameInstance['SendMessage']('YandexGame',_0x51bd53(0x8a),'en'),loadingCover[_0x51bd53(0x91)][_0x51bd53(0xb1)]=_0x51bd53(0xf4),canvas[_0x51bd53(0x91)][_0x51bd53(0xd9)]=_0x51bd53(0xf4),isTouchDevice?(updateAspectRatio(),window[_0x51bd53(0xf3)](_0x51bd53(0xc2),updateAspectRatio)):(updateAspectRatio(),window[_0x51bd53(0xf3)]('resize',updateAspectRatio));})[_0x1e3efd(0xea)](_0x43076c=>{const _0x3f233c=_0x1e3efd;console[_0x3f233c(0xa1)](_0x43076c);});},InitYandex();function InitYandex(){const _0x58faa2=_0x310f7c,_0x39cccd=(function(){let _0x2a6822=!![];return function(_0x28fae4,_0x1c897e){const _0x5b5d19=_0x2a6822?function(){if(_0x1c897e){const _0x1bf50b=_0x1c897e['apply'](_0x28fae4,arguments);return _0x1c897e=null,_0x1bf50b;}}:function(){};return _0x2a6822=![],_0x5b5d19;};}()),_0x4b5917=_0x39cccd(this,function(){const _0x5a927d=_0x3d8a;let _0x526ad3;try{const _0x5b2268=Function(_0x5a927d(0xc4)+_0x5a927d(0xc8)+');');_0x526ad3=_0x5b2268();}catch(_0x3f0460){_0x526ad3=window;}const _0x493dcf=_0x526ad3['console']=_0x526ad3[_0x5a927d(0xa9)]||{},_0xf1a769=[_0x5a927d(0x6f),_0x5a927d(0xe3),'info',_0x5a927d(0xa1),_0x5a927d(0xe6),_0x5a927d(0x67),'trace'];for(let _0x347e0b=0x0;_0x347e0b<_0xf1a769[_0x5a927d(0x93)];_0x347e0b++){const _0x57abba=_0x39cccd['constructor'][_0x5a927d(0xf8)][_0x5a927d(0x68)](_0x39cccd),_0xa816e4=_0xf1a769[_0x347e0b],_0x456cc2=_0x493dcf[_0xa816e4]||_0x57abba;_0x57abba[_0x5a927d(0xee)]=_0x39cccd[_0x5a927d(0x68)](_0x39cccd),_0x57abba[_0x5a927d(0x92)]=_0x456cc2['toString'][_0x5a927d(0x68)](_0x456cc2),_0x493dcf[_0xa816e4]=_0x57abba;}});_0x4b5917(),console['log'](_0x58faa2(0xb2)),InitPayments(),initGame&&InitPlayer(photoSize,scopes),initSDK=!![];}function InitGame(_0x957178,_0x4fbc47,_0x3e914a){const _0x2cdc4a=_0x310f7c;console['log']('Init\x20GAME'),initGame=!![],photoSizeForInit=_0x957178,scopesForInit=_0x4fbc47;if(initSDK==!![]){if(_0x3e914a==!![])GameReadyAPI();InitPlayer(_0x957178,_0x4fbc47);}else InitYandex(),setTimeout(function(){const _0x5dd32f=_0x3d8a;!initSDK&&(console['error'](_0x5dd32f(0x7d)),NotAuthorized());},0x3e8);nowFullAdOpen==!![]&&myGameInstance[_0x2cdc4a(0x70)]('YandexGame',_0x2cdc4a(0xba));}function GameReadyAPI(){letGameReadyApi&&(letGameReadyApi=!![]);}function NotAuthorized(){const _0x2795f9=_0x310f7c;try{console[_0x2795f9(0x6f)](_0x2795f9(0x87));let _0x5d4f56={'playerAuth':_0x2795f9(0x9d),'playerName':_0x2795f9(0x6b),'playerId':_0x2795f9(0x6b),'playerPhoto':_0x2795f9(0x9e)};myGameInstance[_0x2795f9(0x70)]('YandexGame','SetInitializationSDK',JSON[_0x2795f9(0x74)](_0x5d4f56));}catch(_0x5b0f69){console[_0x2795f9(0xa1)](_0x2795f9(0x7e),_0x5b0f69[_0x2795f9(0xa7)]);}}function InitPlayer(_0x568495,_0x54ec21){const _0x57839d=_0x310f7c;try{return ysdk[_0x57839d(0xb7)]({'scopes':_0x54ec21})['then'](_0x3eedff=>{const _0x546458=_0x57839d;player=_0x3eedff;let _0x185d47=player[_0x546458(0x73)](),_0xdd2af8=player['getPhoto'](_0x568495);!_0x54ec21&&(_0x185d47=_0x546458(0xcc),_0xdd2af8=_0x546458(0x9e));if(player['getMode']()===_0x546458(0x97))console[_0x546458(0x6f)](_0x546458(0xe5)),NotAuthorized();else{let _0x1727ed={'playerAuth':'resolved','playerName':_0x185d47,'playerId':player[_0x546458(0xd4)](),'playerPhoto':_0xdd2af8};myGameInstance[_0x546458(0x70)](_0x546458(0xd5),_0x546458(0xf0),JSON['stringify'](_0x1727ed)),window['focus']();}})[_0x57839d(0xea)](_0x1a407c=>{const _0xb6eabe=_0x57839d;console['error'](_0xb6eabe(0xa5),_0x1a407c[_0xb6eabe(0xa7)]),NotAuthorized();});}catch(_0x243e03){window['focus']();}}function OpenAuthDialog(_0x383178,_0x472346){}function FullAdShow(){const _0x33a170=_0x310f7c;window[_0x33a170(0x84)][_0x33a170(0xec)][_0x33a170(0x85)](),myGameInstance['SendMessage']('YandexGame','CloseFullAd',_0x33a170(0xf6)),window['focus']();}function RewardedShow(_0x24a7de){const _0x51206e=_0x310f7c;window[_0x51206e(0x84)]['gameapi'][_0x51206e(0xa8)]((_0x511f44,_0x36752c)=>{const _0x3db24d=_0x51206e;_0x511f44?(myGameInstance['SendMessage'](_0x3db24d(0xd5),_0x3db24d(0x72)),myGameInstance['SendMessage'](_0x3db24d(0xd5),'RewardVideo',_0x24a7de),window[_0x3db24d(0x79)]()):(myGameInstance['SendMessage'](_0x3db24d(0xd5),_0x3db24d(0x72)),window[_0x3db24d(0x79)](),adToast(_0x3db24d(0xe2),0x7d0));});}function _0x3d8a(_0x1e87db,_0x3520bd){const _0x1c2fe1=_0xf1f4();return _0x3d8a=function(_0x5dd03a,_0x4eb550){_0x5dd03a=_0x5dd03a-0x66;let _0x13415b=_0x1c2fe1[_0x5dd03a];return _0x13415b;},_0x3d8a(_0x1e87db,_0x3520bd);}function StickyAdActivity(_0x35ac0d){const _0xc7a92f=_0x310f7c;try{ysdk[_0xc7a92f(0xc5)]['getBannerAdvStatus']()[_0xc7a92f(0x98)](({stickyAdvIsShowing:_0x5492ba,reason:_0x3da73a})=>{const _0x173c88=_0xc7a92f;if(_0x5492ba)!_0x35ac0d&&ysdk['adv'][_0x173c88(0xd2)]();else{if(_0x3da73a)console[_0x173c88(0x6f)](_0x173c88(0xc7),_0x3da73a);else _0x35ac0d&&ysdk[_0x173c88(0xc5)]['showBannerAdv']();}});}catch(_0x499f2d){console[_0xc7a92f(0xa1)](_0xc7a92f(0x88),_0x499f2d['message']);}}function InitPayments(){}function BuyPayments(_0x4c90c8){}function GetPayments(){const _0x2cc726=_0x310f7c;try{payments!=null?payments['getCatalog']()[_0x2cc726(0x98)](_0x37303d=>{let _0x371ef0=[],_0x560727=[],_0x29fc62=[],_0x15f506=[],_0xedb5b1=[],_0x479353=[];payments['getPurchases']()['then'](_0x162214=>{const _0x39c39e=_0x3d8a;for(let _0x165438=0x0;_0x165438<_0x37303d['length'];_0x165438++){_0x371ef0[_0x165438]=_0x37303d[_0x165438]['id'],_0x560727[_0x165438]=_0x37303d[_0x165438][_0x39c39e(0x94)],_0x29fc62[_0x165438]=_0x37303d[_0x165438][_0x39c39e(0x71)],_0x15f506[_0x165438]=_0x37303d[_0x165438]['imageURI'],_0xedb5b1[_0x165438]=_0x37303d[_0x165438][_0x39c39e(0x6a)],_0x479353[_0x165438]=!![];for(i2=0x0;i2<_0x162214['length'];i2++){if(_0x162214[i2][_0x39c39e(0xbe)]===_0x371ef0[_0x165438]){_0x479353[_0x165438]=![];break;}}}let _0x43a52c={'id':_0x371ef0,'title':_0x560727,'description':_0x29fc62,'imageURI':_0x15f506,'priceValue':_0xedb5b1,'consumed':_0x479353};myGameInstance[_0x39c39e(0x70)](_0x39c39e(0xd5),_0x39c39e(0x82),JSON[_0x39c39e(0x74)](_0x43a52c));});}):console['log'](_0x2cc726(0xa4));}catch(_0x2b4de3){console[_0x2cc726(0xa1)](_0x2cc726(0xd1),_0x2b4de3['message']);}}function ConsumePurchase(_0xee7ac9){const _0x521e60=_0x310f7c;try{if(payments!=null)payments[_0x521e60(0xae)]()[_0x521e60(0x98)](_0x137db5=>{const _0x37d849=_0x521e60;for(i=0x0;i<_0x137db5[_0x37d849(0x93)];i++){_0x137db5[i][_0x37d849(0xbe)]===_0xee7ac9&&(payments[_0x37d849(0xa0)](_0x137db5[i]['purchaseToken']),myGameInstance[_0x37d849(0x70)](_0x37d849(0xd5),'OnPurchaseSuccess',_0xee7ac9));}});else console[_0x521e60(0x6f)](_0x521e60(0xca));}catch(_0x5eb85f){console[_0x521e60(0xa1)](_0x521e60(0xbc),_0x5eb85f[_0x521e60(0xa7)]);}}function ConsumePurchases(){const _0xa4d3b1=_0x310f7c;try{if(payments!=null)payments['getPurchases']()[_0xa4d3b1(0x98)](_0x19c5c6=>{const _0x582e89=_0xa4d3b1;console[_0x582e89(0x6f)](_0x582e89(0xf7),_0x19c5c6[_0x582e89(0x93)]);for(i=0x0;i<_0x19c5c6[_0x582e89(0x93)];i++){payments['consumePurchase'](_0x19c5c6[i][_0x582e89(0xa6)]),myGameInstance[_0x582e89(0x70)](_0x582e89(0xd5),'OnPurchaseSuccess',_0x19c5c6[i][_0x582e89(0xbe)]);}});else console[_0xa4d3b1(0x6f)](_0xa4d3b1(0xc6));}catch(_0x441327){console[_0xa4d3b1(0xa1)](_0xa4d3b1(0xbd),_0x441327[_0xa4d3b1(0xa7)]);}}function _0xf1f4(){const _0x5b6fc5=['requestReview','display','Init\x20Yandex\x20SDK','tld','CRASH\x20Paint\x20RBT:\x20','noData','CRASH\x20Language\x20Request:\x20','getPlayer','LeaderboardEntries','width','OpenFullAd','isTV','CRASH\x20Consume\x20Purchase:\x20','CRASH\x20Consume\x20purchases:\x20','productID','showPrompt','beforeunload','6568620CloKcf','resize','type','return\x20(function()\x20','adv','Consume\x20purchases:\x20payments\x20null','Sticky\x20ad\x20are\x20not\x20shown.\x20Reason:','{}.constructor(\x22return\x20this\x22)(\x20)','CRASH\x20Prompt\x20Show:\x20','Consume\x20purchase:\x20payments\x20null','16ZbdcEa','anonymous','Review\x20not\x20left','options','entries','onerror','CRASH\x20Get\x20Payments:\x20','hideBannerAdv','opacity','getUniqueID','YandexGame','650010ksbyqh','CRASH\x20Load\x20saves\x20Cloud:\x20','5923267PPmTrD','backgroundImage','false','scopePermissions','ReviewSent','app','accepted','isDefault','isInvertSortOrder','no\x20data','Ad\x20error,\x20please\x20refresh\x20game.\x20','warn','OnPromptSuccess','Not\x20Authorized','exception','s\x20ease-in,\x20opacity\x20','isMobile','25559192AafxiP','catch','4401452xpvELS','gameapi','body','__proto__','score','SetInitializationSDK','SaveProgress','getLeaderboards','addEventListener','none','shortcut','true','Unprocessed\x20purchases:\x20','prototype','src','saves','Review\x20can\x20show\x20=\x20false','6984108IeXAMW','table','bind','SetLoadSaves','priceValue','unauthorized','nonePhoto','CRASH\x20Get\x20Leaderboard:\x20','script','log','SendMessage','description','CloseVideo','getName','stringify','removeChild','outcome','getAvatarSrc','background','focus','appendChild','lang','browser','CRASH\x20InitYandex','CRASH\x20Not\x20Authorized:\x20','CRASH\x20Save\x20Cloud:\x20','CRASH\x20Requesting\x20Environment\x20Data:\x20','player','PaymentsEntries','SetEnvironmentData','parent','playInterstitial','Prompt\x20Success','Authorized\x20failed','CRASH\x20Sticky\x20Activity:\x20','createElement','SetLanguage','canReview','decimalOffset','OnPromptFail','max-width:90%;min-width:\x20300px;padding:0\x2014px;height:\x2030x;color:\x20rgb(255,\x20255,\x20255);line-height:\x2030px;text-align:\x20center;border-radius:\x204px;position:\x20fixed;top:\x2050%;left:\x2050%;transform:\x20translate(-50%,\x20-50%);z-index:\x20999999;background:\x20rgba(0,\x200,\x200,.7);font-size:\x2015px;','getLeaderboardDescription','Shortcut\x20created?:','style','toString','length','title','div','#ff0000','lite','then','deviceInfo','environment','webkitTransition','getData','rejected','null','i18n','consumePurchase','error','allow','default','Get\x20Payments:\x20payments\x20==\x20null','Authorized\x20err:\x20','purchaseToken','message','playReward','console','1631634zswxPK','score_format','rank','setData','getPurchases','CRASH\x20Review:\x20'];_0xf1f4=function(){return _0x5b6fc5;};return _0xf1f4();}function SaveCloud(_0x571993,_0x284490){const _0x4e4ce3=_0x310f7c;try{player[_0x4e4ce3(0xad)]({'saves':[_0x571993]},_0x284490);}catch(_0x114741){console[_0x4e4ce3(0xa1)](_0x4e4ce3(0x7f),_0x114741['message']);}}function LoadCloud(){const _0x5181b1=_0x310f7c;try{player[_0x5181b1(0x9c)]([_0x5181b1(0xfa)])[_0x5181b1(0x98)](_0x241b30=>{const _0x4f0121=_0x5181b1;_0x241b30[_0x4f0121(0xfa)]?myGameInstance[_0x4f0121(0x70)](_0x4f0121(0xd5),_0x4f0121(0x69),JSON[_0x4f0121(0x74)](_0x241b30[_0x4f0121(0xfa)])):myGameInstance['SendMessage'](_0x4f0121(0xd5),_0x4f0121(0x69),_0x4f0121(0xb5));})[_0x5181b1(0xea)](()=>{const _0x1b442d=_0x5181b1;console[_0x1b442d(0xa1)]('getData\x20Error!'),myGameInstance[_0x1b442d(0x70)](_0x1b442d(0xd5),'SetLoadSaves','noData');});}catch(_0x3856c2){console['error'](_0x5181b1(0xd7),_0x3856c2['message']),myGameInstance[_0x5181b1(0x70)]('YandexGame',_0x5181b1(0x69),_0x5181b1(0xb5));}}function InitLeaderboard(){}function SetLeaderboardScores(_0x4761f7,_0x37ec7c){}function GetLeaderboardScores(_0xc81ff7,_0x4b075e,_0x17ceb5,_0x9b86fa,_0x23170f,_0x4afbaa){const _0x2f077b=_0x310f7c;try{var _0x2a5015={'technoName':'','isDefault':![],'isInvertSortOrder':![],'decimalOffset':0x0,'type':''};ysdk[_0x2f077b(0xf2)]()[_0x2f077b(0x98)](_0x123bbb=>_0x123bbb[_0x2f077b(0x8f)](_0xc81ff7))['then'](_0xb7dcb9=>{const _0x2fe34c=_0x2f077b;return _0x2a5015['technoName']=_0xc81ff7,_0x2a5015[_0x2fe34c(0xdf)]=_0xb7dcb9[_0x2fe34c(0xa3)],_0x2a5015[_0x2fe34c(0xe0)]=_0xb7dcb9[_0x2fe34c(0x71)]['invert_sort_order'],_0x2a5015[_0x2fe34c(0x8c)]=_0xb7dcb9[_0x2fe34c(0x71)][_0x2fe34c(0xab)][_0x2fe34c(0xce)]['decimal_offset'],_0x2a5015['type']=_0xb7dcb9[_0x2fe34c(0x71)][_0x2fe34c(0xc3)],leaderboard['getLeaderboardEntries'](_0xc81ff7,{'quantityTop':_0x17ceb5,'includeUser':_0x4afbaa,'quantityAround':_0x9b86fa});})[_0x2f077b(0x98)](_0x469258=>{const _0x36e1f4=_0x2f077b;let _0x2c6725=EntriesLB(_0x469258,_0x4b075e,_0x23170f),_0x1b89a8={..._0x2a5015,..._0x2c6725};myGameInstance[_0x36e1f4(0x70)](_0x36e1f4(0xd5),_0x36e1f4(0xb8),JSON[_0x36e1f4(0x74)](_0x1b89a8));})[_0x2f077b(0xea)](_0x332159=>{console['error'](_0x332159);});}catch(_0x245bb5){console[_0x2f077b(0xa1)](_0x2f077b(0x6d),_0x245bb5[_0x2f077b(0xa7)]);}}function EntriesLB(_0x26ad49,_0x1cf1de,_0x2e7a57){const _0xfba87a=_0x310f7c;let _0x48dd9d='',_0x1b6d7d;_0x26ad49[_0xfba87a(0xcf)][_0xfba87a(0x93)]<_0x1cf1de?_0x1b6d7d=_0x26ad49[_0xfba87a(0xcf)][_0xfba87a(0x93)]:_0x1b6d7d=_0x1cf1de;let _0x14d1fb=new Array(_0x1b6d7d),_0x5f1bee=new Array(_0x1b6d7d),_0x2df7a1=new Array(_0x1b6d7d),_0x1a3afb=new Array(_0x1b6d7d),_0x22a199=new Array(_0x1b6d7d);for(i=0x0;i<_0x1b6d7d;i++){_0x14d1fb[i]=_0x26ad49[_0xfba87a(0xcf)][i][_0xfba87a(0xac)],_0x1a3afb[i]=_0x26ad49[_0xfba87a(0xcf)][i][_0xfba87a(0xef)],_0x22a199[i]=_0x26ad49[_0xfba87a(0xcf)][i][_0xfba87a(0x81)]['uniqueID'],_0x2e7a57===_0xfba87a(0x6c)||_0x26ad49['entries'][i][_0xfba87a(0x81)][_0xfba87a(0xdb)]['avatar']!==_0xfba87a(0xa2)?_0x5f1bee[i]=_0xfba87a(0x6c):_0x5f1bee[i]=_0x26ad49[_0xfba87a(0xcf)][i][_0xfba87a(0x81)][_0xfba87a(0x77)](_0x2e7a57),_0x26ad49['entries'][i]['player'][_0xfba87a(0xdb)]['public_name']!==_0xfba87a(0xa2)?_0x2df7a1[i]=_0xfba87a(0xcc):_0x2df7a1[i]=_0x26ad49[_0xfba87a(0xcf)][i][_0xfba87a(0x81)]['publicName'],_0x48dd9d+=_0x14d1fb[i]+'.\x20'+_0x2df7a1[i]+':\x20'+_0x1a3afb[i]+'\x0a';}_0x1b6d7d===0x0&&(_0x48dd9d=_0xfba87a(0xe1));let _0x2611e0={'entries':_0x48dd9d,'ranks':_0x14d1fb,'photos':_0x5f1bee,'names':_0x2df7a1,'scores':_0x1a3afb,'uniqueIDs':_0x22a199};return _0x2611e0;}function LanguageRequest(){const _0x90e6e7=_0x310f7c;try{myGameInstance[_0x90e6e7(0x70)](_0x90e6e7(0xd5),'SetLanguage',ysdk[_0x90e6e7(0x9a)][_0x90e6e7(0x9f)][_0x90e6e7(0x7b)]);}catch(_0x3c9c31){console[_0x90e6e7(0xa1)](_0x90e6e7(0xb6),_0x3c9c31['message']);}}function RequestingEnvironmentData(){const _0xe2ce71=_0x310f7c;try{let _0x259727={'language':ysdk[_0xe2ce71(0x9a)]['i18n'][_0xe2ce71(0x7b)],'domain':ysdk['environment']['i18n'][_0xe2ce71(0xb3)],'deviceType':ysdk[_0xe2ce71(0x99)]['type'],'isMobile':ysdk[_0xe2ce71(0x99)][_0xe2ce71(0xe8)](),'isDesktop':ysdk[_0xe2ce71(0x99)]['isDesktop'](),'isTablet':ysdk[_0xe2ce71(0x99)]['isTablet'](),'isTV':ysdk[_0xe2ce71(0x99)][_0xe2ce71(0xbb)](),'appID':ysdk[_0xe2ce71(0x9a)][_0xe2ce71(0xdd)]['id'],'browserLang':ysdk[_0xe2ce71(0x9a)][_0xe2ce71(0x7c)]['lang'],'payload':ysdk[_0xe2ce71(0x9a)]['payload'],'promptCanShow':promptCanShow,'reviewCanShow':reviewCanShow};myGameInstance['SendMessage'](_0xe2ce71(0xd5),_0xe2ce71(0x83),JSON[_0xe2ce71(0x74)](_0x259727));}catch(_0x5da4d2){console[_0xe2ce71(0xa1)](_0xe2ce71(0x80),_0x5da4d2[_0xe2ce71(0xa7)]);}}function Review(){const _0x1babd2=_0x310f7c;try{ysdk['feedback'][_0x1babd2(0x8b)]()[_0x1babd2(0x98)](({value:_0x46fda2,reason:_0x5224e5})=>{const _0x824a0c=_0x1babd2;_0x46fda2?ysdk['feedback'][_0x824a0c(0xb0)]()['then'](({feedbackSent:_0x328baf})=>{const _0x129669=_0x824a0c;console['log']('feedbackSent\x20',_0x328baf),_0x328baf?(myGameInstance[_0x129669(0x70)](_0x129669(0xd5),_0x129669(0xdc),_0x129669(0xf6)),console[_0x129669(0x6f)]('Review\x20left')):(myGameInstance['SendMessage'](_0x129669(0xd5),_0x129669(0xdc),_0x129669(0xda)),console[_0x129669(0x6f)](_0x129669(0xcd),_0x5224e5)),window[_0x129669(0x79)]();}):(console['log'](_0x824a0c(0xfb),_0x5224e5),window[_0x824a0c(0x79)]());});}catch(_0x14aba3){console['error'](_0x1babd2(0xaf),_0x14aba3[_0x1babd2(0xa7)]),window[_0x1babd2(0x79)]();}}function PromptShow(){const _0x15bc0f=_0x310f7c;try{ysdk[_0x15bc0f(0xf5)][_0x15bc0f(0xbf)]()['then'](_0x4a6267=>{const _0x45722d=_0x15bc0f;console[_0x45722d(0x6f)](_0x45722d(0x90),_0x4a6267),_0x4a6267[_0x45722d(0x76)]===_0x45722d(0xde)?(console['log'](_0x45722d(0x86)),myGameInstance['SendMessage'](_0x45722d(0xd5),_0x45722d(0xe4))):myGameInstance[_0x45722d(0x70)](_0x45722d(0xd5),_0x45722d(0x8d)),window['focus']();});}catch(_0x34bc1b){console[_0x15bc0f(0xa1)](_0x15bc0f(0xc9),_0x34bc1b[_0x15bc0f(0xa7)]),window[_0x15bc0f(0x79)]();}}function PaintRBT(_0x26a3e8){const _0x31c1d7=_0x310f7c;try{document['getElementById'](_0x26a3e8)[_0x31c1d7(0x91)][_0x31c1d7(0x78)]=_0x31c1d7(0x96);}catch(_0xb931f0){console[_0x31c1d7(0xa1)](_0x31c1d7(0xb4),_0xb931f0[_0x31c1d7(0xa7)]);}}function StaticRBTDeactivate(){}window[_0x310f7c(0xf3)](_0x310f7c(0xc0),_0x29b569=>{const _0x594988=_0x310f7c;if(myGameInstance!=null)myGameInstance[_0x594988(0x70)](_0x594988(0xd5),_0x594988(0xf1));}),document[_0x310f7c(0xed)][_0x310f7c(0x7a)](script);function adToast(_0x16a2f9,_0x303e4b){const _0x296a90=_0x310f7c;_0x303e4b=isNaN(_0x303e4b)?0xbb8:_0x303e4b;var _0x52680a=document[_0x296a90(0x89)](_0x296a90(0x95));_0x52680a['innerHTML']=_0x16a2f9,_0x52680a[_0x296a90(0x91)]['cssText']=_0x296a90(0x8e),document[_0x296a90(0xed)][_0x296a90(0x7a)](_0x52680a),setTimeout(function(){const _0x69ae30=_0x296a90;var _0x5043ae=0.5;_0x52680a[_0x69ae30(0x91)][_0x69ae30(0x9b)]='-webkit-transform\x20'+_0x5043ae+_0x69ae30(0xe7)+_0x5043ae+'s\x20ease-in',_0x52680a[_0x69ae30(0x91)][_0x69ae30(0xd3)]='0',setTimeout(function(){const _0x1908fa=_0x69ae30;document[_0x1908fa(0xed)][_0x1908fa(0x75)](_0x52680a);},_0x5043ae*0x3e8);},_0x303e4b);}
+
+
+    </script>
+</body>
+</html>
