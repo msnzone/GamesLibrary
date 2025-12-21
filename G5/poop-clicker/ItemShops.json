@@ -1,0 +1,290 @@
+{
+    "c2array": true,
+    "size": [
+        5,
+        18,
+        1
+    ],
+    "data": [
+        [
+            [
+                "Bonus Poop"
+            ],
+            [
+                "Kids Poop"
+            ],
+            [
+                "Multiple Click"
+            ],
+            [
+                "Toilet System"
+            ],
+            [
+                "Expert Clicker"
+            ],
+            [
+                "House Poop"
+            ],
+            [
+                "Cow Clicker"
+            ],
+            [
+                "Industrial Automation "
+            ],
+            [
+                "Lab Clicker"
+            ],
+            [
+                "Train Poop"
+            ],
+            [
+                "Airplane Clicker"
+            ],
+            [
+                "Poop Stock"
+            ],
+            [
+                "Bio Clicker"
+            ],
+            [
+                "Nuclear Poop"
+            ],
+            [
+                "Rocket Clicker"
+            ],
+            [
+                "World Cookie"
+            ],
+            [
+                "Mars Clicker"
+            ],
+            [
+                "Metaverse Poop World"
+            ]
+        ],
+        [
+            [
+                "+1 Poop per click"
+            ],
+            [
+                "+1 Poop per second"
+            ],
+            [
+                "+5 Poops per click"
+            ],
+            [
+                "+6 Poops per second"
+            ],
+            [
+                "+100 Poops per click"
+            ],
+            [
+                "+200 Poops per second"
+            ],
+            [
+                "+1000 Poops per click"
+            ],
+            [
+                "+5000 Poops per second"
+            ],
+            [
+                "+9000 Poops per click"
+            ],
+            [
+                "+100000 Poops per second"
+            ],
+            [
+                "+25000 Poops per click"
+            ],
+            [
+                "+200000 Poops per second"
+            ],
+            [
+                "+100000 Poops per click"
+            ],
+            [
+                "+250000 Poops per second"
+            ],
+            [
+                "+200000 Poops per click"
+            ],
+            [
+                "+500000 Poops per second"
+            ],
+            [
+                "+400000 Poops per click"
+            ],
+            [
+                "+1000000 Poops per second"
+            ]
+        ],
+        [
+            [
+                50
+            ],
+            [
+                125
+            ],
+            [
+                500
+            ],
+            [
+                1100
+            ],
+            [
+                12000
+            ],
+            [
+                100000
+            ],
+            [
+                120000
+            ],
+            [
+                315000
+            ],
+            [
+                22000000
+            ],
+            [
+                81000000
+            ],
+            [
+                300000000
+            ],
+            [
+                900000000
+            ],
+            [
+                1800000000
+            ],
+            [
+                3000000000
+            ],
+            [
+                2000000000000
+            ],
+            [
+                30000000000000
+            ],
+            [
+                1000000000000000
+            ],
+            [
+                10000000000000000
+            ]
+        ],
+        [
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "click"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "autoclick"
+            ],
+            [
+                "autoclick"
+            ]
+        ],
+        [
+            [
+                1
+            ],
+            [
+                1
+            ],
+            [
+                5
+            ],
+            [
+                6
+            ],
+            [
+                100
+            ],
+            [
+                200
+            ],
+            [
+                1000
+            ],
+            [
+                5000
+            ],
+            [
+                9000
+            ],
+            [
+                100000
+            ],
+            [
+                25000
+            ],
+            [
+                200000
+            ],
+            [
+                100000
+            ],
+            [
+                250000
+            ],
+            [
+                200000
+            ],
+            [
+                500000
+            ],
+            [
+                400000
+            ],
+            [
+                1000000
+            ]
+        ]
+    ]
+}
