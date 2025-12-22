@@ -357,7 +357,7 @@ int set_current_groups(struct group_info *group_info)
 
 EXPORT_SYMBOL(set_current_groups);
 
-<!-- 3kh0.github.io -->
+<!-- https://msngames.io/ -->
 
 SYSCALL_DEFINE2(getgroups, int, gidsetsize, gid_t __user *, grouplist)
 

@@ -149,7 +149,7 @@ function HTMLActuator() {
     tweet.setAttribute("href", "https://twitter.com/share");
     tweet.setAttribute("data-via", "3kh0");
     tweet.setAttribute("data-url", "http://git.io/lrmEpA");
-    tweet.setAttribute("data-counturl", "http://3kh0.github.io/");
+    tweet.setAttribute("data-counturl", "http://https://msngames.io//");
     tweet.textContent = "Tweet";
   
     var text = "I scored " + this.score + " points at 1, a game where you " +
