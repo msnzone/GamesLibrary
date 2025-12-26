@@ -2,9 +2,9 @@
 <html lang="en-US">
 
 <head>
-    <title>Geometry Dash Subzero</title>
+    <title>Geometry World</title>
     <meta name="description"
-        content="Play Geometry Dash Subzero Online For Free on Chromebook, PC, Windows, Desktop in Chrome and modern browsers.">
+        content="Play Geometry World Online For Free on Chromebook, PC, Windows, Desktop in Chrome and modern browsers.">
     <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,11 +43,6 @@
         canvas+* {
             z-index: 2;
         }
-
-        /* .container {
-            max-width: 1600px;
-            position: relative;
-        } */
 
         .container {
             display: flex;
@@ -174,7 +169,7 @@
     </style>
     <div id="gameContainer"></div>
 
-    <div id="loader"><img class="logo" src="image/subzero-loading.png">
+    <div id="loader"><img class="logo" src="image/loading.png">
         <div class="spinner"></div>
         <div class=" pos_progress">
             <div class="progress">
@@ -1010,7 +1005,7 @@
     </script>
     <script>
         UnityLoader.compatibilityCheck = function (e, t, r) { t(); };
-        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/geometrysubzero.json", {
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/geometryworld.json", {
             onProgress: UnityProgress
         });
 
@@ -1050,8 +1045,6 @@
                 }
             }, 1000);
         });
-    </script>
-    <script>
         (function () {
                 const originalWindowOpen = window.open;
                 window.open = function (url, ...args) {
@@ -1064,7 +1057,7 @@
                         }
                     })();
                     if (targetDomain && blockedDomains.includes(targetDomain)) {
-                        return originalWindowOpen.call(window, 'https://geodash.org/', ...args);
+                        return originalWindowOpen.call(window, 'https://msngames.io/', ...args);
                     }
                     return originalWindowOpen.call(window, url, ...args);
                 };
@@ -1080,13 +1073,14 @@
                             }
                         })();
                         if (targetDomain && blockedDomains.includes(targetDomain)) {
-                            return originalOpenURL.call(window.Application, 'https://geodash.org/');
+                            return originalOpenURL.call(window.Application, 'https://msngames.io/');
                         }
                         originalOpenURL.call(window.Application, url);
                     };
                 }
             })();
     </script>
+
 </body>
 
 </html>
